@@ -197,7 +197,7 @@ class Game {
   }; 
 
   drawBackground() {
-    clear()
+    // clear()
     for (let x = this.bgImgXValue; x < canvas.width; x += canvas.width) {
       ctx.drawImage(this.bgImg, x, 0, canvas.width, canvas.height);
     }
@@ -218,14 +218,15 @@ class Game {
 
   moveBlocks() {
     for (let i = 0; i < this.topArray.length; i++) {
-      this.topArray[i].x -= 1;
+      this.topArray[i].x -= 3;
     }
     for (let i = 0; i < this.bottomArray.length; i++) {
-      this.bottomArray[i].x -= 1;
+      this.bottomArray[i].x -= 3;
     }
     this.bgImgXValue -= 1;
     this.bgImgXValue %= canvas.width;
   };
+
 
   addBlocks() {
     let lastBlock = this.topArray[this.topArray.length - 1]
@@ -235,17 +236,17 @@ class Game {
   };
 
   start() {
-    // this.createBlocks();
-    
+    this.createBlocks();
+    this.animate();
   }
 
   animate() {
     clear()
     // this.createBlocks();
-    this.drawBlocks();
     this.drawBackground();
+    this.drawBlocks();
     this.moveBlocks();
-    // this.addBlocks();
+    this.addBlocks();
     player.draw();
     
 
@@ -259,7 +260,7 @@ canvas.onclick = function(){
     game.resetGame();
 };
 
-game.animate();
+game.start();
 
 
 
