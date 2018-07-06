@@ -96,7 +96,6 @@ document.addEventListener('keyup', (event) => {
 class Game {
 
   constructor() {
-    this.resetGame();
     this.topBlockImg = new Image();
     this.topBlockImg.src = "https://i.imgur.com/ZM518qF.png?1";
     this.btmBlockImg = new Image();
@@ -106,19 +105,8 @@ class Game {
     this.bgImgXValue = 0;
     this.topArray = [];
     this.bottomArray = [];
-    this.score = 0
-    
+    this.score = 0 
   };
-
-
-
-  resetGame() {
-    this.topArray = [];
-    this.bottomArray = [];
-    this.createBlocks();
-    this.animate
-  };
-
 
 
   createBlocks() {  
@@ -198,7 +186,6 @@ class Game {
 
 
   checkCrash(x, y, w, h) {
-
     for (let i = 0; i < this.topArray.length; i++) {
       let a = this.topArray[i];
       if (crash(x, y, w, h, a.x, a.y, a.width, a.height)) {
@@ -239,7 +226,6 @@ class Game {
   
 
   animate() {
-    
       clear()
       this.drawBackground();
       this.drawBlocks();
@@ -266,11 +252,20 @@ class Game {
 
 const game = new Game();
 
-canvas.onclick = function(){
-    game.resetGame();
-};
+const menu = document.getElementById("menu")
 
-game.start();
+canvas.style.display = 'none'
+
+menu.addEventListener('click', () => {
+  console.log('click on')
+  menu.style.display = 'none';
+  canvas.style.display = '';
+  game.start();
+});
+  
+
+
+
 
 
 

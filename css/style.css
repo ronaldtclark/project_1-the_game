@@ -1,8 +1,29 @@
 body {
-  background-color: lightblue;
+  background-color: black;
+  text-align: center;
 }
 
 canvas { 
   background-color: black;
  }
+
+#menu {
+  background-image: url("https://i.imgur.com/zsxOfMk.jpg?1");
+  height: 600px;
+  width: 800px;
+}
+
+h1 {
+  color: lightblue;
+  font-size: 100px;
+  font-weight: 800;
+}
+
+h3 {
+  color: lightblue;
+  font-size: 24px;
+  font-weight: 800;
+  padding-top: 300px;
+}
+
 
