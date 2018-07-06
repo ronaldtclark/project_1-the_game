@@ -1,5 +1,5 @@
 body {
-  background-color: black;
+  background-color: #4F5052;
   text-align: center;
 }
 
@@ -22,6 +22,8 @@ h1 {
   color: lightblue;
   font-size: 100px;
   font-weight: 800;
+  font-family: 'Press Start 2P', cursive;
+
 }
 
 h3 {
@@ -29,6 +31,8 @@ h3 {
   font-size: 24px;
   font-weight: 800;
   padding-top: 300px;
+  font-family: 'Press Start 2P', cursive;
+
 }
 
 

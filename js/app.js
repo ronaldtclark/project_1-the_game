@@ -203,7 +203,7 @@ class Game {
   };
 
   drawScore() {
-      ctx.font = "24px 'Arial'";
+      ctx.font = "20px 'Press Start 2P'";
       ctx.fillStyle = "lightgreen";
       ctx.fillText("Score: " + this.score, 50, 550);
   };
