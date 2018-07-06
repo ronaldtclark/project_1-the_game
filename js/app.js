@@ -14,6 +14,10 @@ const crash = (x1, y1, w1, h1, x2, y2, w2, h2) => {
   return x1 < x2 + w2 && x2 < x1 + w1 && y1 < y2 + h2 && y2 < y1 + h1
 };
 
+//game over image
+const gameOverMessage = new Image()
+  gameOverMessage.src = "https://i.imgur.com/UoUe6vE.png"
+
 // ship image
 let playerImg = new Image()
   playerImg.src = "https://i.imgur.com/Ta7L9Ur.gif"
@@ -24,10 +28,24 @@ const player = {
   y: 200,
   width: 80,
   height: 30,
-  draw: function() {
+  direction: '',
+  draw() {
     ctx.drawImage(playerImg, this.x, this.y, this.width, this.height);
+  },
+  move() {
+    if (this.direction === 'up') {
+      this.y -= 10;
+    }
+    if (this.direction === 'down') {
+      this.y += 10;
+    }
+    if (this.direction === 'left') {
+      this.x -= 10;
+    }
+    if (this.direction === 'right') {
+      this.x += 10;
+    }
   }
-
 };
 
 
@@ -35,55 +53,43 @@ const player = {
 //player movement
 document.addEventListener('keydown', (event) => {
 // up 38
-  if (event.keyCode == 38) {
-    player.y -= 30;
-    // clear();
-    // player.draw();
+  if (event.keyCode === 38) {
+    player.direction = 'up';
   }
 // down 40
-  if (event.keyCode == 40) {
-    player.y += 30;
-    // clear();
-    // player.draw();
+  if (event.keyCode === 40) {
+    player.direction = 'down';
   }
 // left 37
-  if (event.keyCode == 37) {
-    player.x -= 30;
-    // clear();
-    // player.draw();
+  if (event.keyCode === 37) {
+    player.direction = 'left';
   }
 // right 39
-  if (event.keyCode == 39) {
-    player.x += 30;
-    // clear();
-    // player.draw();
+  if (event.keyCode === 39) {
+    player.direction = 'right';
   }
 
 })
 
-// document.addEventListener('keyup', (event) => {
-// // up 38
-//   if (event.keyCode == 38) {
-//     player.y -= "";
-    
-//   }
-// // down 40
-//   if (event.keyCode == 40) {
-//     player.y += "";
-    
-//   }
-// // left 37
-//   if (event.keyCode == 37) {
-//     player.x -= "";
-    
-//   }
-// // right 39
-//   if (event.keyCode == 39) {
-//     player.x += "";
-   
-//   }
+document.addEventListener('keyup', (event) => {
+// up 38
+  if (event.keyCode === 38) {
+    player.direction = "";
+  }
+// down 40
+  if (event.keyCode === 40) {
+    player.direction = ""; 
+  }
+// left 37
+  if (event.keyCode === 37) {
+    player.direction = ""; 
+  }
+// right 39
+  if (event.keyCode === 39) {
+    player.direction = "";
+  }
 
-// })
+})
 
 // obstacles
 
@@ -94,12 +100,13 @@ class Game {
     this.topBlockImg = new Image();
     this.topBlockImg.src = "https://i.imgur.com/ZM518qF.png?1";
     this.btmBlockImg = new Image();
-    this.btmBlockImg.src = "https://i.imgur.com/ZM518qF.png?1";
+    this.btmBlockImg.src = "https://i.imgur.com/OXERXGA.png?1s";
     this.bgImg = new Image();
     this.bgImg.src = "https://i.imgur.com/FUwWAhe.jpg";
     this.bgImgXValue = 0;
     this.topArray = [];
     this.bottomArray = [];
+    this.score = 0
     
   };
 
@@ -139,6 +146,8 @@ class Game {
      
     this.topArray.push(topBlock);
     this.bottomArray.push(bottomBlock);
+
+    this.score = this.score + 100;
   }; 
 
 
@@ -168,10 +177,10 @@ class Game {
 
   moveElements() {
     for (let i = 0; i < this.topArray.length; i++) {
-      this.topArray[i].x -= 3;
+      this.topArray[i].x -= 4;
     }
     for (let i = 0; i < this.bottomArray.length; i++) {
-      this.bottomArray[i].x -= 3;
+      this.bottomArray[i].x -= 4;
     }
     this.bgImgXValue -= 1;
     this.bgImgXValue %= canvas.width;
@@ -206,43 +215,52 @@ class Game {
     } 
   };
 
+  drawScore() {
+      ctx.font = "24px 'Arial'";
+      ctx.fillStyle = "lightgreen";
+      ctx.fillText("Score: " + this.score, 50, 550);
+  };
 
   gameOver() {
     let crashDetect = this.checkCrash(player.x, player.y, player.width, player.height);
       if (crashDetect == true) {
-         playerImg.src = "https://i.imgur.com/r7HCQ5W.png?1"
+        playerImg.src = "https://i.imgur.com/r7HCQ5W.png?1";
+        ctx.drawImage(gameOverMessage, 150, 200, 500, 200);
       }
-  }
+    }
+  
 
 
   start() {
     this.createBlocks();
     this.animate();
-  }
+  };
 
-
+  
 
   animate() {
     
       clear()
       this.drawBackground();
       this.drawBlocks();
+      this.drawScore();
+      player.move();
       let crashDetect = this.checkCrash(player.x, player.y, player.width, player.height);
-      this.moveElements();
       this.addBlocks();
+      this.moveElements();
       this.gameOver();
       if (crashDetect == true) {
-        playerImg.src = "https://i.imgur.com/r7HCQ5W.png?1";
-        ctx.drawImage(playerImg, player.x - 10, player.y - 35, 100, 100)
-        return;
-        
+        // playerImg.src = "https://i.imgur.com/r7HCQ5W.png?1";
+        ctx.drawImage(playerImg, player.x - 10, player.y - 35, 100, 100);
+        return; 
       } 
       player.draw();
 
      
     window.requestAnimationFrame(()=>{this.animate()});
   }
-}
+};
+
 
 
 
