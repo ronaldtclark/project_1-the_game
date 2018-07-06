@@ -5,12 +5,17 @@ body {
 
 canvas { 
   background-color: black;
- }
+}
 
 #menu {
   background-image: url("https://i.imgur.com/zsxOfMk.jpg?1");
   height: 600px;
   width: 800px;
+}
+  
+.center {
+  display: flex;
+  justify-content: center;
 }
 
 h1 {
