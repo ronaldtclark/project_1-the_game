@@ -1,54 +1,28 @@
-<!-- # TEXAS HOLD 'EM
+<!-- # SPACE ACE
 
 ## User Stories
 
-* 2 players:
-    1 user
-    1 cpu
+* 1 player
+    
+* Navigate the Planet Express ship through the lightning storm!
 
-* Round:
-*  player places an ante bet 
-*  player is given 2 cards
-    round of betting
-*  three community cards dealt "the flop"
-    round of betting
-*  one community card dealt "the turn"
-    round of betting
-*  one community card dealt "the river"
-    round of betting
-*  showdown occurs if both players still active
-  *  at showdown, 5 cards automatically chosen from 7 possible cards to make the highest hand type possible. 
-  * hand types compared to determine winner
-  * hand types in order:
-    royal flush
-    straight flush
-    4 of a kind
-    full house
-    flush
-    straight
-    3 of a kind
-    two pair
-    pair
-    high card
+* Use the arrow keys to move the ship and avoid the columns of lightning as they come at you
 
-  * a higher hand type beats any lower hand type.
-    if both players have same hand type, the computer iterates over the hands comparing each card one at a time looking for tie breaker.
+* The more columns you avoid, the higher your score.
 
-*  if the player has a better hand than the cpu opponent, the pot is added to their chip total
+* See how far you can navigate before crashing.
 
-*  if either player folds during any round of betting, round ends immediately
-
-* rounds repeat until user or cpu runs out of chips
+* Compare your high score with your friends.
 
 EXTRA
 
-* add more players
-* add a dealer button that rotates, and big and small blinds instead of ante
-* allow multiple human players
+* add a second user ship
+* add enemy spaceships and projectiles
+* add a settings box at start to set gap size and block speed
   
 ## Wireframe
 
-![Game Layout](https://i.imgur.com/UYIg33t.jpg)
+![Game Layout](https://i.imgur.com/MM2OTja.jpg)
 
 
 
